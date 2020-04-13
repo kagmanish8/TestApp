@@ -45,7 +45,13 @@ steps:
     jarsignerKeystorePassword: 'testbk'
     jarsignerKeystoreAlias: 'testKey'
     jarsignerKeyPassword: 'testbk'
+    zipalign: false
 
 
 
 
+# - task: GooglePlayRelease@3
+#   inputs:
+#     authType: 'JsonFile'
+#     apkFile: 
+#     track: 'internal'
