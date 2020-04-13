@@ -24,9 +24,23 @@ steps:
     tasks: 'assembleDebug test'
   displayName: gradlew assembleDebug test
 
+- task: CopyFiles@2
+  inputs:
+    contents: '**/*.apk'
+    targetFolder: '$(build.artifactStagingDirectory)'
+  displayName: Copy .apk files to artifact staging directory
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '$(build.artifactStagingDirectory)'
+    artifactName: 'drop'
+    artifactType: 'container'
+  displayName: Publish artifacts
+
+
 - task: AndroidSigning@2
   inputs:
-    apkFiles: '**/*.apk'
+    apkFiles: '$(System.DefaultWorkingDirectory)/_kagmanish8.TestApp/drop/app/build/outputs/apk/app-mock-debug.apk'
     jarsignerKeystoreFile: 'test.jks'
     jarsignerKeystorePassword: 'testbk'
     jarsignerKeystoreAlias: 'testKey'
@@ -34,15 +48,4 @@ steps:
 
 
 
-#- task: CopyFiles@2
-#  inputs:
-#    contents: '**/*.apk'
-#    targetFolder: '$(build.artifactStagingDirectory)'
-#  displayName: Copy .apk files to artifact staging directory
 
-#- task: PublishBuildArtifacts@1
-#  inputs:
-#    pathToPublish: '$(build.artifactStagingDirectory)'
-#    artifactName: 'drop'
-#    artifactType: 'container'
-#  displayName: Publish artifacts
