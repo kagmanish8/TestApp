@@ -6,6 +6,10 @@
 pool:
   vmImage: 'macOS-10.14'
 
+variables:
+  jarsignerKeystorePassword: 'testbk'
+
+
 steps:
 - task: Gradle@2
   inputs:
@@ -20,15 +24,27 @@ steps:
     tasks: 'assembleDebug test'
   displayName: gradlew assembleDebug test
 
-- task: CopyFiles@2
+- task: AndroidSigning@2
   inputs:
-    contents: '**/*.apk'
-    targetFolder: '$(build.artifactStagingDirectory)'
-  displayName: Copy .apk files to artifact staging directory
+    apkFiles: '**/*.apk'
+    jarsign: true
+    jarsignerKeystoreFile: '**/*.jks'
+    jarsignerKeystorePassword: $(jarsignerKeystorePassword)
+    jarsignerKeystoreAlias: 'testKey'
+    jarsignerKeyPassword: $(jarsignerKeystorePassword)
+    zipalign: true
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathToPublish: '$(build.artifactStagingDirectory)'
-    artifactName: 'drop'
-    artifactType: 'container'
-  displayName: Publish artifacts
+
+
+#- task: CopyFiles@2
+#  inputs:
+#    contents: '**/*.apk'
+#    targetFolder: '$(build.artifactStagingDirectory)'
+#  displayName: Copy .apk files to artifact staging directory
+
+#- task: PublishBuildArtifacts@1
+#  inputs:
+#    pathToPublish: '$(build.artifactStagingDirectory)'
+#    artifactName: 'drop'
+#    artifactType: 'container'
+#  displayName: Publish artifacts
