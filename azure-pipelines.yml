@@ -27,7 +27,7 @@ steps:
 - task: AndroidSigning@2
   inputs:
     apkFiles: '**/*.apk'
-    jarsignerKeystoreFile: '**/*.jks'
+    jarsignerKeystoreFile: 'test.jks'
     jarsignerKeystorePassword: 'testbk'
     jarsignerKeystoreAlias: 'testKey'
     jarsignerKeyPassword: 'testbk'
