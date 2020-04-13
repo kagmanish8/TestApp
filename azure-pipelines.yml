@@ -30,15 +30,8 @@ steps:
     targetFolder: '$(build.artifactStagingDirectory)'
   displayName: Copy .apk files to artifact staging directory
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathToPublish: '$(build.artifactStagingDirectory)'
-    artifactName: 'drop'
-    artifactType: 'container'
-  displayName: Publish artifacts
-
-
 - task: AndroidSigning@2
+  displayName: $(build.artifactStagingDirectory)
   inputs:
     apkFiles: '$(build.artifactStagingDirectory)/app-mock-debug.apk'
     jarsignerKeystoreFile: 'test.jks'
