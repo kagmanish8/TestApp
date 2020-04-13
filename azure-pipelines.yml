@@ -40,7 +40,7 @@ steps:
 
 - task: AndroidSigning@2
   inputs:
-    apkFiles: '$(System.DefaultWorkingDirectory)/_kagmanish8.TestApp/drop/app/build/outputs/apk/app-mock-debug.apk'
+    apkFiles: '$(build.artifactStagingDirectory)/app-mock-debug.apk'
     jarsignerKeystoreFile: 'test.jks'
     jarsignerKeystorePassword: 'testbk'
     jarsignerKeystoreAlias: 'testKey'
