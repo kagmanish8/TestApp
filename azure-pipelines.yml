@@ -33,7 +33,7 @@ steps:
 - task: AndroidSigning@2
   displayName: $(build.artifactStagingDirectory)
   inputs:
-    apkFiles: '$(build.artifactStagingDirectory)/app-mock-debug.apk'
+    apkFiles: '$(build.artifactStagingDirectory)/app/build/outputs/apk/app-mock-debug.apk'
     jarsignerKeystoreFile: 'test.jks'
     jarsignerKeystorePassword: 'testbk'
     jarsignerKeystoreAlias: 'testKey'
