@@ -23,10 +23,6 @@ import android.support.v4.app.FragmentTransaction;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.microsoft.appcenter.AppCenter;
-import com.microsoft.appcenter.analytics.Analytics;
-import com.microsoft.appcenter.crashes.Crashes;
-
 /**
  * This provides methods to help Activities load their UI.
  */
@@ -37,10 +33,6 @@ public class ActivityUtils {
      * performed by the {@code fragmentManager}.
      *
      */
-
-    AppCenter.start(getApplication(), "67241a7b-83e6-48c5-88f2-3dba9e5c233e",
-    Analytics.class, Crashes.class);
-
     public static void addFragmentToActivity (@NonNull FragmentManager fragmentManager,
                                               @NonNull Fragment fragment, int frameId) {
         checkNotNull(fragmentManager);
