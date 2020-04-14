@@ -12,6 +12,7 @@ variables:
 
 steps:
 - task: Gradle@2
+  displayName: Build by Gradle Tool
   inputs:
     workingDirectory: ''
     gradleWrapperFile: 'gradlew'
@@ -21,14 +22,14 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: false
     # testResultsFiles: '**/TEST-*.xml'
-    tasks: 'assembleDebug test'
-  displayName: gradlew assembleDebug test
+    tasks: 'build'
+  
 
 - task: CopyFiles@2
+  displayName: Copy .apk files to artifact staging directory
   inputs:
     contents: '**/*.apk'
     targetFolder: '$(build.artifactStagingDirectory)'
-  displayName: Copy .apk files to artifact staging directory
 
 - task: AndroidSigning@2
   displayName: $(build.artifactStagingDirectory)
